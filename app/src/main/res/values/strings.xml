@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CourseWorkApp</string>
+    <string name="id">ID</string>
+    <string name="name">Name</string>
+    <string name="email_address">Email address</string>
+    <string name="welcome">Welcome!</string>
+    <string name="sign_out">Sign Out</string>
 </resources>

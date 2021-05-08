@@ -25,11 +25,13 @@ class MainActivity : AppCompatActivity() {
                 Intent(
                     this, DashboardActivity::class.java).also {
                     startActivity(it)
+                    finish()
                 }
             } else {
                 Intent(
                     this, SignInActivity::class.java).also {
                     startActivity(it)
+                    finish()
                 }
             }
         },2000)
