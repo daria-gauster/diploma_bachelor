@@ -3,8 +3,8 @@ package com.example.android.courseworkapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.android.courseworkapp.databinding.ActivitySignInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -22,25 +22,24 @@ class SignInActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
-    private lateinit var btnSignIn: SignInButton
+    private lateinit var binding: ActivitySignInBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
-
-        btnSignIn = findViewById(R.id.btnSignIn)
+        binding = ActivitySignInBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build()
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         //Firebase Auth instance
         mAuth = FirebaseAuth.getInstance()
 
-        btnSignIn.setOnClickListener {
+        binding.btnGoogleSignIn.setOnClickListener {
             signIn()
         }
     }
@@ -76,18 +75,18 @@ class SignInActivity : AppCompatActivity() {
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d("SIGN_IN_ACTIVITY", "signInWithCredential:success")
-                        Intent(this, DashboardActivity::class.java).also {
-                            startActivity(it)
-                            finish()
-                        }
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w("SIGN_IN_ACTIVITY", "signInWithCredential:failure", task.exception)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("SIGN_IN_ACTIVITY", "signInWithCredential:success")
+                    Intent(this, DashboardActivity::class.java).also {
+                        startActivity(it)
+                        finish()
                     }
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("SIGN_IN_ACTIVITY", "signInWithCredential:failure", task.exception)
                 }
+            }
     }
 }
