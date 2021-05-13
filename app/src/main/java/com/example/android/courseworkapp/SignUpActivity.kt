@@ -1,5 +1,6 @@
 package com.example.android.courseworkapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -27,6 +28,12 @@ class SignUpActivity : AppCompatActivity() {
         binding.btnEmailSignUp.setOnClickListener {
             registerUser()
         }
+        binding.btnToSignIn.setOnClickListener {
+            Intent(this, SignInActivity::class.java).also {
+                startActivity(it)
+                finish()
+            }
+        }
     }
 
 
@@ -42,7 +49,9 @@ class SignUpActivity : AppCompatActivity() {
                         checkLoggedInState()
                     }
                 } catch (e: Exception) {
-                    withContext(Dispatchers.Main) {
+                    //used to be dispatchers.io but didnt work
+                    //idk if it will cause problems later on
+                        withContext(Dispatchers.Main) {
                         Log.d("SIGNUPACTIVITY", e.message)
                         Toast.makeText(this@SignUpActivity, e.message, Toast.LENGTH_LONG).show()
                     }
