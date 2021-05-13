@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class DashboardActivity : AppCompatActivity() {
 
-    private lateinit var mAuth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityDashboardBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,8 +18,8 @@ class DashboardActivity : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mAuth = FirebaseAuth.getInstance()
-        val currentUser = mAuth.currentUser
+        auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
 
         binding.include.tvId.text = currentUser?.uid
         binding.include.tvName.text = currentUser?.displayName
@@ -28,7 +28,7 @@ class DashboardActivity : AppCompatActivity() {
         //load profile picture
         Glide.with(this).load(currentUser?.photoUrl).into(binding.include.ivProfilePic)
         binding.btnSignOut.setOnClickListener {
-            mAuth.signOut()
+            auth.signOut()
             Intent(this, SignInActivity::class.java).also { startActivity(it) }
             finish()
         }

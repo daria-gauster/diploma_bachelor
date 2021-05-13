@@ -28,10 +28,10 @@
         app:layout_constraintStart_toStartOf="@+id/imageView" />
 
     <include
-        android:id="@+id/include_container"
+        android:id="@+id/include_container_signup"
         layout="@layout/sign_in_container"
-        android:layout_width="415dp"
-        android:layout_height="196dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/btnEmailSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -43,14 +43,26 @@
     <Button
         android:id="@+id/btnEmailSignUp"
         style="@style/darkTextRegular"
-        android:layout_width="96dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/sign_up"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_toSignIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_container" />
+        app:layout_constraintTop_toBottomOf="@+id/include_container_signup" />
+
+    <Button
+        android:id="@+id/btn_toSignIn"
+        style="@style/darkTextRegular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_shape"
+        android:text="@string/back_to_signin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
