@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,7 @@ import com.example.android.courseworkapp.model.Place
 import com.google.firebase.auth.FirebaseAuth
 import java.time.LocalDateTime
 
+private const val TAG = "DashboardActivity"
 private const val PERMISSION_REQUEST = 10
 
 class DashboardActivity : AppCompatActivity() {
@@ -59,7 +61,13 @@ class DashboardActivity : AppCompatActivity() {
         val hostedGames = generateSampleData()
         //set layout manager for rv
         binding.rvHostedGames.layoutManager = LinearLayoutManager(this)
-        binding.rvHostedGames.adapter = GamesAdapter(this, hostedGames)
+        binding.rvHostedGames.adapter = GamesAdapter(this, hostedGames, object: GamesAdapter.OnClickListener {
+            override fun onItemClick(position: Int) {
+                Log.i(TAG, "position $position")
+            }
+
+        })
+        //show game information activity
 
 
         //check location permissions
