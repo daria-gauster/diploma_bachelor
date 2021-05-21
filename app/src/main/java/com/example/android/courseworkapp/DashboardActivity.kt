@@ -63,7 +63,9 @@ class DashboardActivity : AppCompatActivity() {
         binding.rvHostedGames.layoutManager = LinearLayoutManager(this)
         binding.rvHostedGames.adapter = GamesAdapter(this, hostedGames, object: GamesAdapter.OnClickListener {
             override fun onItemClick(position: Int) {
-                Log.i(TAG, "position $position")
+                Intent(this@DashboardActivity, GameInfoActivity::class.java).also{
+                    startActivity(it)
+                }
             }
 
         })
