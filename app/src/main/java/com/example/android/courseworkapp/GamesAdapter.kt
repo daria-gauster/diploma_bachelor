@@ -11,19 +11,24 @@ import com.example.android.courseworkapp.model.HostedGame
 
 private const val TAG = "GamesAdapterActivity"
 
-class GamesAdapter(val context: Context , val hostedGames: List<HostedGame>, val onClickListener: OnClickListener) : RecyclerView.Adapter<GamesAdapter.ViewHolder>() {
+class GamesAdapter(
+    private val context: Context,
+    private val hostedGames: List<HostedGame>,
+    private val onClickListener: OnClickListener
+) : RecyclerView.Adapter<GamesAdapter.ViewHolder>() {
     interface OnClickListener {
         fun onItemClick(position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1, parent, false)
+        val view =
+            LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val hostedGame = hostedGames[position]
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             Log.i(TAG, "Tapped on $position")
             onClickListener.onItemClick(position)
         }

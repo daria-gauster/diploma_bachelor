@@ -41,7 +41,12 @@ class DashboardActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
 
-
+        setSupportActionBar(findViewById(R.id.toolbarDashboard))
+        //home navigation
+        supportActionBar?.apply{
+            setDisplayHomeAsUpEnabled(true)
+            title = "Events"
+        }
 
 
         //viewbinding
@@ -63,9 +68,7 @@ class DashboardActivity : AppCompatActivity() {
         binding.rvHostedGames.layoutManager = LinearLayoutManager(this)
         binding.rvHostedGames.adapter = GamesAdapter(this, hostedGames, object: GamesAdapter.OnClickListener {
             override fun onItemClick(position: Int) {
-                Intent(this@DashboardActivity, GameInfoActivity::class.java).also{
-                    startActivity(it)
-                }
+                openDialog()
             }
 
         })
@@ -87,6 +90,10 @@ class DashboardActivity : AppCompatActivity() {
 
     }
 
+    private fun openDialog() {
+        TODO("Not yet implemented")
+    }
+
     //check location permissions
     private fun checkPermission(permissionArray: Array<String>): Boolean {
         for (i in permissionArray.indices) {
@@ -95,6 +102,7 @@ class DashboardActivity : AppCompatActivity() {
         return true
     }
 
+    //permission check
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST) {
