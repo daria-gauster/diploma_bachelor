@@ -37,6 +37,10 @@ class MapsFragment : Fragment() {
         
         googleMap.addMarker(MarkerOptions().position(location).title("Marker in Odesa"))
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 10f))
+//        googleMap.setOnMapClickListener { latLng ->
+//            googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
+//            googleMap.addMarker(MarkerOptions().position(LatLng(latLng.latitude, latLng.longitude)))
+//        }
     }
 
     override fun onCreateView(
@@ -52,4 +56,27 @@ class MapsFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
     }
+//    private fun fetchLocation() {
+//        if (ActivityCompat.checkSelfPermission(
+//                this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+//            PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+//                this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
+//            PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this,
+//                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), permissionCode)
+//            return
+//        }
+//        val task = fusedLocationProviderClient.lastLocation
+//        task.addOnSuccessListener { location −>
+//            if (location != null) {
+//                currentLocation = location
+//                Toast.makeText(applicationContext, currentLocation.latitude.toString() + "" +
+//                        currentLocation.longitude, Toast.LENGTH_SHORT).show()
+//                val supportMapFragment = (supportFragmentManager.findFragmentById(R.id.myMap) as
+//                        SupportMapFragment?)!!
+//                supportMapFragment.getMapAsync(this@MainActivity)
+//            }
+//        }
+//    }
+
 }
