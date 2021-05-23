@@ -4,6 +4,11 @@
     <style name="darkTextRegular">
         <item name="android:fontFamily">@font/nunito</item>
         <item name="android:textColor">#292929</item>
+        <item name="android:textSize">18sp</item>
     </style>
-
+    <style name="lightTextRegular">
+        <item name="android:fontFamily">@font/nunito</item>
+        <item name="android:textColor">#E8E8E8</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>
