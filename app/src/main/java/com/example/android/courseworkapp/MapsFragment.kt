@@ -166,12 +166,6 @@ class MapsFragment : Fragment(), GoogleMap.OnMapLongClickListener, GoogleMap.OnM
             dialog.dismiss()
         }
         dialog.findViewById<Button>(R.id.btnCancel).setOnClickListener {
-            googleMapObject.addMarker(
-                MarkerOptions()
-                    .position(latLng)
-                    .title("default")
-                    .draggable(true)
-            )
             dialog.dismiss()
         }
         dialog.show()
