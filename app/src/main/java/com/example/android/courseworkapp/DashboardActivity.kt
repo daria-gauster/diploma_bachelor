@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
@@ -14,25 +13,16 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.courseworkapp.databinding.ActivityDashboardBinding
 import com.example.android.courseworkapp.model.HostedGame
 import com.example.android.courseworkapp.model.Place
-import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.gms.location.*
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.tasks.RuntimeExecutionException
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import java.time.LocalDateTime
 
 private const val TAG = "DashboardActivity"
 private const val PERMISSION_REQUEST = 10
-private const val REQUEST_LOCATION = 1
+
 
 class DashboardActivity : AppCompatActivity() {
     //check location permissions
@@ -42,12 +32,7 @@ class DashboardActivity : AppCompatActivity() {
     )
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityDashboardBinding
-    private lateinit var currentLocation: Location
-    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    private lateinit var mGoogleMap: GoogleMap
 
-    private val malaysiaCoordinate = LatLng(4.2105, 101.9758)
-    private var mSpotMarkerList = ArrayList<Marker>()
     private val preferences: SharedPreferences by lazy {
         getSharedPreferences(
             "preferences",
@@ -130,7 +115,6 @@ class DashboardActivity : AppCompatActivity() {
         }
         return true
     }
-
 
 
     //permission check
@@ -230,8 +214,4 @@ class DashboardActivity : AppCompatActivity() {
                 )
         )
     }
-
-
-
-
 }
