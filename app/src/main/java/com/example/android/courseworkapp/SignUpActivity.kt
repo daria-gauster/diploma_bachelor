@@ -51,7 +51,7 @@ class SignUpActivity : AppCompatActivity() {
                 } catch (e: Exception) {
                     //used to be dispatchers.io but didnt work
                     //idk if it will cause problems later on
-                        withContext(Dispatchers.Main) {
+                    withContext(Dispatchers.Main) {
                         Log.d("SIGNUPACTIVITY", e.message)
                         Toast.makeText(this@SignUpActivity, e.message, Toast.LENGTH_LONG).show()
                     }

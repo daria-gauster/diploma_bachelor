@@ -1,10 +1,10 @@
 package com.example.android.courseworkapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.android.courseworkapp.databinding.ActivityGameInfoBinding
 
 class GameInfoActivity : AppCompatActivity() {
@@ -19,7 +19,7 @@ class GameInfoActivity : AppCompatActivity() {
 
         setSupportActionBar(findViewById(R.id.toolbarGameInfo))
         //home navigation
-        supportActionBar?.apply{
+        supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             title = "Manage Games"
         }
@@ -33,7 +33,7 @@ class GameInfoActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.menuAdd -> {
-            Toast.makeText(this,"Add action",Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Add action", Toast.LENGTH_LONG).show()
             true
         }
 

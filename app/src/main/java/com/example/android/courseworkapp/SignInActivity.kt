@@ -132,6 +132,7 @@ class SignInActivity : AppCompatActivity() {
             }
         }
     }
+
     //check if user is logged in
     private fun checkLoggedInState() {
         Log.d("SIGNUPACTIVITY", if (auth.currentUser == null) "not signed in" else "signed in")
