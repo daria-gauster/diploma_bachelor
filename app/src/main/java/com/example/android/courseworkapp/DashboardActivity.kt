@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.courseworkapp.databinding.ActivityDashboardBinding
 import com.example.android.courseworkapp.model.HostedGame
 import com.example.android.courseworkapp.model.Place
+import com.google.android.gms.maps.GoogleMap
 import com.google.firebase.auth.FirebaseAuth
 import java.time.LocalDateTime
 
@@ -56,7 +57,6 @@ class DashboardActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbarDashboard))
         //home navigation
         supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
             title = "Events"
         }
 
@@ -170,6 +170,16 @@ class DashboardActivity : AppCompatActivity() {
         dialog.show()
     }
 
+//    fun addHosteGameMarker(googleMap: GoogleMap) {
+//        HostedGame(
+//            "Dung n drags",
+//            LocalDateTime.now(),
+//            "DnD",
+//            10,
+//            Place(googleMap.mar)
+//        )
+//    }
+
     //populate games rv
     private fun generateSampleData(): List<HostedGame> {
         return listOf(
@@ -214,4 +224,5 @@ class DashboardActivity : AppCompatActivity() {
                 )
         )
     }
+
 }

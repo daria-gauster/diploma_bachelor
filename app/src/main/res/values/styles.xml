@@ -9,6 +9,6 @@
     <style name="lightTextRegular">
         <item name="android:fontFamily">@font/nunito</item>
         <item name="android:textColor">#E8E8E8</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>
