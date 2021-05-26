@@ -10,4 +10,11 @@
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="sign_up">Sign Up</string>
+    <string name="back_to_signin">got an account? sign in</string>
+    <string name="add">Add</string>
+    <string name="planned_games">Planned Games</string>
+    <string name="checkbox_im_going">I\'m going!</string>
+    <string name="starts_at">Starts at 00:00</string>
+    <string name="event_name">Event name</string>
+    <string name="apply">Apply</string>
 </resources>
