@@ -40,18 +40,20 @@ class MapsFragment : Fragment(), GoogleMap.OnMapLongClickListener, GoogleMap.OnM
 
     //maps callback
     private val callback = OnMapReadyCallback { googleMap ->
-        googleMapObject = googleMap
-
-        //default location is odesa
-        val location = LatLng(46.0, 30.0)
 
         googleMap.apply {
             setOnMapLongClickListener(this@MapsFragment)
             setOnMarkerDragListener(this@MapsFragment)
-            addMarker(MarkerOptions().position(location).title("Default marker"))
-            animateCamera(CameraUpdateFactory.newLatLngZoom(location, 10f))
             uiSettings.isZoomControlsEnabled = true
         }
+        googleMapObject = googleMap
+
+        @SuppressLint("MissingPermission")
+        if ((activity as DashboardActivity).checkPermission(permissions)) {
+            googleMapObject.isMyLocationEnabled = true
+            zoomToUserLocation()
+        }
+
     }
 
     override fun onCreateView(
@@ -63,87 +65,23 @@ class MapsFragment : Fragment(), GoogleMap.OnMapLongClickListener, GoogleMap.OnM
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view.context)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
         geocoder = Geocoder(view.context)
 
-        btnCurrentLocation = view.findViewById(R.id.btnCurrentLocation)
-        btnCurrentLocation.setOnClickListener {
-            Log.d(TAG, "button clicked")
-            mapFragment?.getMapAsync(callback)
-            if ((activity as DashboardActivity).checkPermission(permissions)) {
-                fetchLocation()
-            }
-        }
+
     }
 
-    //fetch current location
     @SuppressLint("MissingPermission")
-    private fun fetchLocation() {
-        val task: Task<Location> = fusedLocationProviderClient.lastLocation
-
-        task.addOnSuccessListener { location ->
-            if (location != null) {
-                currentLocation = location
-                zoomToUserLocation(
-                    googleMapObject,
-                    LatLng(
-                        currentLocation.latitude,
-                        currentLocation.longitude
-                    )
-                )
-            } else {
-                val builder = LocationSettingsRequest.Builder()
-                    .addLocationRequest(reqSetting)
-
-                val client = LocationServices.getSettingsClient(view?.context)
-                client.checkLocationSettings(builder.build()).addOnCompleteListener { task ->
-                    try {
-                        val state: LocationSettingsStates = task.result!!.locationSettingsStates
-                        Log.d(TAG, task.result!!.toString())
-                        Log.e(
-                            TAG, "LocationSettings: \n" +
-                                    " GPS present: ${state.isGpsPresent} \n" +
-                                    " GPS usable: ${state.isGpsUsable} \n" +
-                                    " Location present: " +
-                                    "${state.isLocationPresent} \n" +
-                                    " Location usable: " +
-                                    "${state.isLocationUsable} \n" +
-                                    " Network Location present: " +
-                                    "${state.isNetworkLocationPresent} \n" +
-                                    " Network Location usable: " +
-                                    "${state.isNetworkLocationUsable} \n"
-                        )
-                    } catch (e: RuntimeExecutionException) {
-                        Log.d(TAG, e.toString())
-                    }
-                }
-
-                val locationUpdates = object : LocationCallback() {
-                    override fun onLocationResult(lr: LocationResult) {
-                        Log.e(TAG, lr.toString())
-                        Log.e(TAG, "Newest Location: " + lr.locations.last())
-                        zoomToUserLocation(
-                            googleMapObject,
-                            LatLng(
-                                lr.locations.last().latitude,
-                                lr.locations.last().longitude
-                            )
-                        )
-                    }
-                }
-
-                fusedLocationProviderClient.requestLocationUpdates(
-                    reqSetting,
-                    locationUpdates,
-                    null /* Looper */
-                )
-                fusedLocationProviderClient.removeLocationUpdates(locationUpdates)
-            }
+    private fun zoomToUserLocation() {
+        val locationTask = fusedLocationProviderClient.lastLocation
+        locationTask.addOnSuccessListener { location ->
+            val latLng = LatLng(location.latitude, location.longitude)
+            googleMapObject.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20f))
         }
-//        }
     }
 
     override fun onMapLongClick(latLng: LatLng) {
@@ -192,6 +130,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMapLongClickListener, GoogleMap.OnM
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
         googleMap.addMarker(MarkerOptions().position(latLng))
     }
+
 
     private val reqSetting = LocationRequest.create().apply {
         fastestInterval = 10000
