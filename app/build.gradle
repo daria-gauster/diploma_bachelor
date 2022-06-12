@@ -5,6 +5,7 @@ plugins {
     id 'com.google.secrets_gradle_plugin' version '0.5'
 
 }
+apply plugin: 'kotlin-kapt'
 
 android {
     signingConfigs {
@@ -42,6 +43,7 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
+        dataBinding = true
         viewBinding true
     }
 

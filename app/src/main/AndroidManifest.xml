@@ -11,13 +11,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/app_logo_dice"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CourseWorkApp">
-        <activity android:name=".GameInfoActivity"></activity>
+        android:theme="@style/Theme.GameetUp">
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,6 +32,8 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".DashboardActivity" />
         <activity android:name=".SignInActivity" />
+        <activity android:name=".GameInfoActivity" />
+        <activity android:name=".SettingsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

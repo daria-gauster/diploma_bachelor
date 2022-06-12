@@ -8,18 +8,22 @@ import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.Window
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.drawerlayout.widget.DrawerLayout
 import com.example.android.courseworkapp.databinding.ActivityDashboardBinding
 import com.example.android.courseworkapp.model.HostedGame
 import com.example.android.courseworkapp.model.Place
-import com.google.android.gms.maps.GoogleMap
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import java.time.LocalDateTime
+
 
 private const val TAG = "DashboardActivity"
 private const val PERMISSION_REQUEST = 10
@@ -42,10 +46,24 @@ class DashboardActivity : AppCompatActivity() {
     }
     private lateinit var editor: SharedPreferences.Editor
 
+    lateinit var toggle: ActionBarDrawerToggle
+    lateinit var drawerLayout: DrawerLayout
+    lateinit var navView: NavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         //viewbinding instead of kotlin synthetics
         binding = ActivityDashboardBinding.inflate(layoutInflater)
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+
+
         setContentView(binding.root)
 
         //initialize sharedpreferences
@@ -54,12 +72,17 @@ class DashboardActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
 
-        setSupportActionBar(findViewById(R.id.toolbarDashboard))
         //home navigation
+        setSupportActionBar(binding.toolbarDashboard)
         supportActionBar?.apply {
-            title = "Events"
+            title = ""
+            setDisplayHomeAsUpEnabled(true)
         }
 
+
+        //initializing drawer resources
+        drawerLayout = binding.drawerLayout
+        navView = findViewById(R.id.navView)
 
         //viewbinding
 //        binding.include.tvId.text = currentUser?.uid
@@ -69,24 +92,24 @@ class DashboardActivity : AppCompatActivity() {
         //load profile picture
 //        Glide.with(this).load(currentUser?.photoUrl).into(binding.include.ivProfilePic)
 
-        binding.btnSignOut.setOnClickListener {
-            auth.signOut()
-            Intent(this, SignInActivity::class.java).also { startActivity(it) }
-            finish()
-        }
+//        binding.btnSignOut.setOnClickListener {
+//            auth.signOut()
+//            Intent(this, SignInActivity::class.java).also { startActivity(it) }
+//            finish()
+//        }
 
         //games data
         val hostedGames = generateSampleData()
 
         //set layout manager for rv
-        binding.rvHostedGames.layoutManager = LinearLayoutManager(this)
-        binding.rvHostedGames.adapter =
-            GamesAdapter(this, hostedGames, object : GamesAdapter.OnClickListener {
-                override fun onItemClick(position: Int) {
-                    showGameinfoDialog()
-                }
-
-            })
+//        binding.rvHostedGames.layoutManager = LinearLayoutManager(this)
+//        binding.rvHostedGames.adapter =
+//            GamesAdapter(this, hostedGames, object : GamesAdapter.OnClickListener {
+//                override fun onItemClick(position: Int) {
+//                    showGameinfoDialog()
+//                }
+//
+//            })
         //show game information activity
 
 
@@ -105,6 +128,35 @@ class DashboardActivity : AppCompatActivity() {
         ).commit()
 
 
+        //drawer toggle
+        toggle = ActionBarDrawerToggle(
+            this,
+            drawerLayout,
+            R.string.open,
+            R.string.close
+        )
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+
+        navView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.item_profile -> Toast.makeText(applicationContext, "power", Toast.LENGTH_SHORT)
+                    .show()
+                R.id.item_games -> Toast.makeText(applicationContext, "power2", Toast.LENGTH_SHORT)
+                    .show()
+                R.id.item_friends -> Toast.makeText(
+                    applicationContext,
+                    "power3",
+                    Toast.LENGTH_SHORT
+                ).show()
+                R.id.item_settings -> Intent(
+                    this,
+                    SettingsActivity::class.java
+                ).also { intent -> startActivity(intent) }
+            }
+            true
+        }
     }
 
 
@@ -116,6 +168,12 @@ class DashboardActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     //permission check
     override fun onRequestPermissionsResult(
@@ -157,7 +215,7 @@ class DashboardActivity : AppCompatActivity() {
                 false
             )
         //get new prefs
-        dialog.findViewById<Button>(R.id.btnApplyCheckBox).setOnClickListener {
+        dialog.findViewById<Button>(R.id.btnAccept).setOnClickListener {
             editor.apply {
                 putBoolean(
                     "cbGameParticipation",

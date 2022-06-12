@@ -15,6 +15,6 @@
     </style>
     <style name="Theme.CourseWorkApp.DarkActionBar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:textAlignment">center</item>
-        <item name="fontFamily">@font/nunito</item>
+        <item name="fontFamily">@font/montserrat</item>
     </style>
 </resources>

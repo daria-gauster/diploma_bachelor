@@ -9,6 +9,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#F85F6A</color>
     <color name="colorPrimaryDark">#0D0F20</color>
+    <color name="slide_menuBg">#1D181B</color>
     <color name="colorAccent">#FF9D52</color>
+    <color name="transparent">#00000000</color>
+    <color name="std_dark">#1E1E1E</color>
+    <color name="std_yellow">#F0B53F</color>
+    <color name="darker_yellow">#D7A33F</color>
+    <color name="darker_yellow_text">#806647</color>
+
 
 </resources>

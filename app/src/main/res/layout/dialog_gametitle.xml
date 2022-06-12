@@ -1,60 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="250dp"
+    android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:background="@drawable/dialog_bg"
-    android:padding="8dp">
+    android:padding="30dp">
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvEventTitle"-->
+    <!--        style="@style/lightTextRegular"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@color/colorPrimary"-->
+    <!--        android:padding="6dp"-->
+    <!--        android:text="@string/event_name"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <Spinner
+        android:id="@+id/dialog_spinner_game"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/spinner_bg"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etGameTitle" />
+
+    <Spinner
+        android:id="@+id/dialog_spinner_time"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/spinner_bg"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_spinner_game" />
+
+    <Spinner
+        android:id="@+id/dialog_spinner_players"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/spinner_bg"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_spinner_time" />
 
     <TextView
-        android:id="@+id/tv_gametitle"
-        style="@style/lightTextRegular"
-        android:layout_width="0dp"
+        android:id="@+id/tvStartingTime"
+        style="@style/TextRegular"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter Game's title:"
-        app:layout_constraintBottom_toTopOf="@+id/etGameTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="16dp"
+        android:text="@string/food"
+        android:textColor="@color/darker_yellow_text"
 
-    <EditText
-        android:id="@+id/etGameTitle"
-        style="@style/lightTextRegular"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="game title"
-        app:layout_constraintBottom_toTopOf="@+id/btnAccept"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/cbFood"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_gametitle" />
+        app:layout_constraintTop_toBottomOf="@+id/dialog_spinner_players" />
 
-    <Button
-        android:id="@+id/btnCancel"
+    <CheckBox
+        android:id="@+id/cbFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="0dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_spinner_players" />
+
+    <CheckBox
+        android:id="@+id/cbGameParticipation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="0dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvStartingTime" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TextRegular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Cancel"
-        style="@style/lightTextRegular"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnAccept"
-        app:layout_constraintHorizontal_bias="0.5"
-        android:textSize="16sp"
+        android:text="@string/_18"
+        android:textColor="@color/darker_yellow_text"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/cbGameParticipation"
+        app:layout_constraintEnd_toStartOf="@+id/cbGameParticipation"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnAccept"
+        style="@style/TextRegular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Accept"
-        android:textSize="16sp"
-        style="@style/lightTextRegular"
         android:background="@android:color/transparent"
+        android:padding="0dp"
+        android:text="@string/apply"
+        android:textColor="@color/darker_yellow_text"
+        android:textFontWeight="650"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnCancel" />
+        app:layout_constraintStart_toEndOf="@+id/btnCancel"
+        app:layout_constraintTop_toBottomOf="@+id/cbGameParticipation" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        style="@style/TextRegular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:padding="0dp"
+        android:text="@string/cancel"
+        android:textColor="@color/darker_yellow_text"
+        android:textFontWeight="650"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbGameParticipation" />
+
+    <EditText
+        android:id="@+id/etGameTitle"
+        style="@style/TextRegular"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@drawable/spinner_bg"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:text="@string/title"
+        android:textColor="@color/darker_yellow_text"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:layout_width="250dp"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:background="@drawable/dialog_bg"-->
+    <!--    android:padding="8dp">-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_gametitle"-->
+    <!--        style="@style/lightTextRegular"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Enter Game's title:"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/etGameTitle"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/etGameTitle"-->
+    <!--        style="@style/lightTextRegular"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:hint="game title"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/btnAccept"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_gametitle" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/btnCancel"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Cancel"-->
+    <!--        style="@style/lightTextRegular"-->
+    <!--        android:background="@android:color/transparent"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/btnAccept"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        android:textSize="16sp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/btnAccept"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Accept"-->
+    <!--        android:textSize="16sp"-->
+    <!--        style="@style/lightTextRegular"-->
+    <!--        android:background="@android:color/transparent"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/btnCancel" />-->
+
+    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+
+

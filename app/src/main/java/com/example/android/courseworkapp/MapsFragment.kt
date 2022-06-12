@@ -24,6 +24,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import java.io.IOException
@@ -48,7 +49,20 @@ class MapsFragment : Fragment(), GoogleMap.OnMapLongClickListener, GoogleMap.OnM
         googleMap.apply {
             setOnMapLongClickListener(this@MapsFragment)
             setOnMarkerDragListener(this@MapsFragment)
+
             uiSettings.isZoomControlsEnabled = true
+
+            val success: Boolean = googleMap.setMapStyle(
+                MapStyleOptions(
+                    resources
+                        .getString(R.string.style_json)
+                )
+            )
+
+            if (!success) {
+                Log.e(TAG, "Style parsing failed.")
+            }
+
         }
         googleMapObject = googleMap
 
@@ -59,6 +73,8 @@ class MapsFragment : Fragment(), GoogleMap.OnMapLongClickListener, GoogleMap.OnM
         }
 
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
