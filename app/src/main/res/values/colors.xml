@@ -14,6 +14,7 @@
     <color name="transparent">#00000000</color>
     <color name="std_dark">#1E1E1E</color>
     <color name="std_yellow">#F0B53F</color>
+    <color name="checkbox">#806647</color>
     <color name="darker_yellow">#D7A33F</color>
     <color name="darker_yellow_text">#806647</color>
 

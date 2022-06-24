@@ -2,6 +2,7 @@ package com.example.android.courseworkapp
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Dialog
 import android.location.Address
 import android.location.Geocoder
@@ -32,7 +33,7 @@ import java.io.IOException
 
 private const val TAG = "MapsFragment"
 
-class MapsFragment : Fragment(), GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerDragListener {
+class MapsFragment : Fragment(), GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener {
     private lateinit var btnCurrentLocation: Button
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var currentLocation: Location
@@ -49,6 +50,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMapLongClickListener, GoogleMap.OnM
         googleMap.apply {
             setOnMapLongClickListener(this@MapsFragment)
             setOnMarkerDragListener(this@MapsFragment)
+            setOnMarkerClickListener(this@MapsFragment)
 
             uiSettings.isZoomControlsEnabled = true
 
@@ -90,9 +92,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMapLongClickListener, GoogleMap.OnM
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view.context)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
-        mapFragment?.getMapAsync{
-            it.setInfoWindowAdapter(CustomInfoWindowForGoogleMap(view.context))
-        }
+
         geocoder = Geocoder(view.context)
 
     }
@@ -177,13 +177,28 @@ class MapsFragment : Fragment(), GoogleMap.OnMapLongClickListener, GoogleMap.OnM
                 MarkerOptions()
                     .position(latLng)
                     .title(dialog.findViewById<EditText>(R.id.etGameTitle).text.toString())
+                    .snippet(getGameSnippet(dialog))
                     .draggable(true)
             )
+            Log.e(TAG, getGameSnippet(dialog))
             dialog.dismiss()
         }
         dialog.findViewById<Button>(R.id.btnCancel).setOnClickListener {
             dialog.dismiss()
         }
         dialog.show()
+    }
+
+    private fun getGameSnippet(dialog: Dialog): String {
+        return "Game: " + dialog.findViewById<EditText>(R.id.dialog_spinner_game).text.toString() +
+                "\nAt: " + dialog.findViewById<EditText>(R.id.dialog_spinner_time).text.toString() +
+                "\nPlayers: "+ dialog.findViewById<EditText>(R.id.dialog_spinner_players).text.toString()
+    }
+
+
+    override fun onMarkerClick(marker: Marker): Boolean {
+
+        marker.showInfoWindow()
+        return true
     }
 }

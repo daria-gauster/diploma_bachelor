@@ -245,6 +245,9 @@
   <string name="food">FOOD</string>
   <string name="title">TITLE</string>
     <string name="cancel">CANCEL</string>
+  <string name="players">PLAYERS</string>
+  <string name="time">TIME</string>
+  <string name="game">GAME</string>
 
 
 </resources>

@@ -19,35 +19,63 @@
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <Spinner
+    <EditText
         android:id="@+id/dialog_spinner_game"
+        android:textColorHint="@color/darker_yellow_text"
+
+        style="@style/TextRegular"
         android:layout_width="0dp"
         android:layout_height="40dp"
+        android:textColor="@color/darker_yellow_text"
+
         android:layout_marginTop="16dp"
         android:background="@drawable/spinner_bg"
+        android:hint="@string/game"
+
+        android:paddingStart="10dp"
         android:spinnerMode="dropdown"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etGameTitle" />
 
-    <Spinner
+    <EditText
         android:id="@+id/dialog_spinner_time"
+        style="@style/TextRegular"
+        android:textColorHint="@color/darker_yellow_text"
+
         android:layout_width="0dp"
         android:layout_height="40dp"
+        android:textColor="@color/darker_yellow_text"
+
         android:layout_marginTop="16dp"
         android:background="@drawable/spinner_bg"
+        android:hint="@string/time"
+        android:inputType="date"
+
+        android:paddingStart="10dp"
         android:spinnerMode="dropdown"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dialog_spinner_game" />
 
-    <Spinner
+    <EditText
         android:id="@+id/dialog_spinner_players"
+        style="@style/TextRegular"
         android:layout_width="0dp"
+        android:textColorHint="@color/darker_yellow_text"
         android:layout_height="40dp"
+        android:textColor="@color/darker_yellow_text"
+
         android:layout_marginTop="16dp"
         android:background="@drawable/spinner_bg"
+        android:hint="@string/players"
+
+        android:inputType="numberDecimal"
+        android:paddingStart="10dp"
         android:spinnerMode="dropdown"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dialog_spinner_time" />
@@ -71,6 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:buttonTint="@color/checkbox"
         android:padding="0dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
@@ -82,6 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:buttonTint="@color/checkbox"
         android:padding="0dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
@@ -121,12 +151,14 @@
         style="@style/TextRegular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
         android:background="@android:color/transparent"
         android:padding="0dp"
         android:text="@string/cancel"
         android:textColor="@color/darker_yellow_text"
         android:textFontWeight="650"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnAccept"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cbGameParticipation" />
 
@@ -134,13 +166,15 @@
         android:id="@+id/etGameTitle"
         style="@style/TextRegular"
         android:layout_width="0dp"
+        android:textColorHint="@color/darker_yellow_text"
+
         android:layout_height="40dp"
         android:background="@drawable/spinner_bg"
-        android:paddingLeft="10dp"
+        android:hint="@string/title"
+        android:paddingStart="10dp"
         android:paddingTop="5dp"
-        android:text="@string/title"
         android:textColor="@color/darker_yellow_text"
-        android:textSize="20sp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
