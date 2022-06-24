@@ -3,7 +3,6 @@
     <string name="id">ID</string>
     <string name="name">Name</string>
     <string name="email_address">Email address</string>
-    <string name="welcome">Welcome!</string>
     <string name="sign_out">Sign Out</string>
     <string name="gameetup">gameetup</string>
     <string name="sign_in">Sign In</string>
@@ -248,6 +247,8 @@
   <string name="players">PLAYERS</string>
   <string name="time">TIME</string>
   <string name="game">GAME</string>
+    <string name="welcome">Welcome!</string>
+    <string name="login">LOGIN</string>
 
 
 </resources>

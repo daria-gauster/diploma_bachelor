@@ -4,6 +4,8 @@
         <item name="android:fontFamily">@font/montserrat_medium</item>
         <item name="android:textColor">#C6C6C6</item>
         <item name="android:textSize">24sp</item>
+    </style><style name="TextRegular.bold">
+        <item name="android:textSize">30sp</item>
     </style>
 
     <style name="darkTextRegular">

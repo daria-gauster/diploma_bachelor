@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 }
             } else {
                 Intent(
-                    this, SignInActivity::class.java
+                    this, WelcomeScreen::class.java
                 ).also {
                     startActivity(it)
                     finish()

@@ -64,6 +64,7 @@ class DashboardActivity : AppCompatActivity() {
         )
 
 
+
         setContentView(binding.root)
 
         //initialize sharedpreferences
