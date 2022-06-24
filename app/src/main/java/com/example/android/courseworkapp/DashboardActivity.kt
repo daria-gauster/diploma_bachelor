@@ -141,13 +141,13 @@ class DashboardActivity : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.item_profile -> Toast.makeText(applicationContext, "power", Toast.LENGTH_SHORT)
+                R.id.item_profile -> Toast.makeText(applicationContext, "PROFILE SELECTED", Toast.LENGTH_SHORT)
                     .show()
-                R.id.item_games -> Toast.makeText(applicationContext, "power2", Toast.LENGTH_SHORT)
+                R.id.item_games -> Toast.makeText(applicationContext, "GAMES SELECTED", Toast.LENGTH_SHORT)
                     .show()
                 R.id.item_friends -> Toast.makeText(
                     applicationContext,
-                    "power3",
+                    "FRIENDS SELECTED",
                     Toast.LENGTH_SHORT
                 ).show()
                 R.id.item_settings -> Intent(

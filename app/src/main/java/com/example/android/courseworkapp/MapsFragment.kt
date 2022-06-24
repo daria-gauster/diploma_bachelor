@@ -13,9 +13,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.android.courseworkapp.model.CustomInfoWindowForGoogleMap
 import com.example.android.courseworkapp.model.DialogEventTitle
@@ -44,13 +43,42 @@ class MapsFragment : Fragment(), GoogleMap.OnMapLongClickListener, GoogleMap.OnM
         Manifest.permission.ACCESS_COARSE_LOCATION
     )
 
+    internal inner class CustomInfoWindowAdapter : GoogleMap.InfoWindowAdapter {
+
+        // These are both view groups containing an ImageView with id "badge" and two
+        // TextViews with id "title" and "snippet".
+        private val window: View = layoutInflater.inflate(R.layout.dialog_gameinfo, null)
+
+        override fun getInfoWindow(marker: Marker): View? {
+//            window.background = R.drawable.vereinigungsmenge_7
+            window.findViewById<TextView>(R.id.tvEventTitle).text = marker.title
+            window.findViewById<TextView>(R.id.tvEventInfo).text = marker.snippet
+
+            return window
+
+
+
+        }
+
+        override fun getInfoContents(marker: Marker): View? {
+
+            return null
+
+
+        }
+
+    }
+
+
     //maps callback
+    @SuppressLint("PotentialBehaviorOverride")
     private val callback = OnMapReadyCallback { googleMap ->
 
         googleMap.apply {
             setOnMapLongClickListener(this@MapsFragment)
             setOnMarkerDragListener(this@MapsFragment)
             setOnMarkerClickListener(this@MapsFragment)
+            setInfoWindowAdapter(CustomInfoWindowAdapter())
 
             uiSettings.isZoomControlsEnabled = true
 

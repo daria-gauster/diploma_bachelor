@@ -2,23 +2,46 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="250dp"
-    android:layout_height="100dp"
-    android:background="@drawable/vereinigungsmenge_7">
+    android:layout_height="120dp"
+    android:background="@drawable/gruppe_41"
+
+    >
 
     <TextView
         android:id="@+id/tvEventTitle"
         style="@style/TextRegular"
-        android:layout_width="0dp"
-        android:textColor="@color/darker_yellow_text"
+
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:textAlignment="center"
-        android:textSize="24sp"
+        android:paddingTop="8dp"
         android:text="@string/event_name"
+        android:textAlignment="center"
+        android:textColor="@color/darker_yellow_text"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvEventInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tvEventInfo"
+        style="@style/TextRegular"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:maxLines="5"
+        android:text="@string/event_name"
+        android:textAlignment="center"
+        android:textColor="@color/darker_yellow_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEventTitle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
